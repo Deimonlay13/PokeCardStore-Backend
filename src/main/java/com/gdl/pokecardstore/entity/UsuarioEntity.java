@@ -36,9 +36,8 @@ public class UsuarioEntity {
     @Column(nullable = false, unique = true)
     private String rut;
 
-    @ManyToOne
-    @JoinColumn(name = "id_direccion", nullable = false)
-    @NotNull(message = "La dirección es obligatoria")
+    @OneToOne
+    @JoinColumn(name = "id_direccion", nullable = true)
     private DireccionEntity direccion;
 
     @Column(name = "fecha_alta", nullable = false, updatable = false)
