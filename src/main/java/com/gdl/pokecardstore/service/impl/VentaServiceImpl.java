@@ -78,7 +78,7 @@ public class VentaServiceImpl implements VentaService {
     private VentaDTO convertToDTO(VentaEntity v) {
         return new VentaDTO(
                 v.getIdVenta(),
-                v.getUsuario().getIdCliente(), // ← CORREGIDO
+                v.getUsuario().getIdUsuario(),
                 v.getTotal(),
                 v.getFechaCreacion()
         );
