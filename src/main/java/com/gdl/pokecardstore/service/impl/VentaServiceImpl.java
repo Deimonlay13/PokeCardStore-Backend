@@ -24,15 +24,19 @@ public class VentaServiceImpl implements VentaService {
     private UsuarioRepository usuarioRepository;
 
     @Override
-    public List<VentaDTO> listarVentas() {
-        // Obtiene todas las ventas desde la base de datos (findAll)
-        // Convierte cada VentaEntity en VentaDTO usando convertToDTO
-        // Devuelve la lista resultante como List<VentaDTO>
+    public List<VentaDTO> obtenerVentas() {
         return ventaRepository.findAll()
                 .stream()
-                .map(this::convertToDTO) // Entity → DTO
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
+
+
+    @Override
+    public void eliminarVenta(Long idVenta) {
+        ventaRepository.deleteById(idVenta);
+    }
+
 
     @Override
     public VentaDTO obtenerVentaPorId(Long id) {
@@ -73,10 +77,11 @@ public class VentaServiceImpl implements VentaService {
     // Método privado que convierte una entidad VentaEntity en un DTO VentaDTO
     private VentaDTO convertToDTO(VentaEntity v) {
         return new VentaDTO(
-                v.getIdVenta(),               // ID de la venta
-                v.getUsuario().getIdUsuario(), // ID del usuario asociado
-                v.getTotal(),                  // Total de la venta
-                v.getFechaCreacion()           // Fecha en que se creó la venta
+                v.getIdVenta(),
+                v.getUsuario().getIdCliente(), // ← CORREGIDO
+                v.getTotal(),
+                v.getFechaCreacion()
         );
     }
+
 }

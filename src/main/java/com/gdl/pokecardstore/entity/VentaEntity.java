@@ -30,6 +30,8 @@ public class VentaEntity {
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
     private LocalDateTime fechaCreacion;
 
+
+    
     public VentaEntity(LocalDateTime fechaCreacion, Long idVenta, Double total, UsuarioEntity usuario) {
         this.fechaCreacion = fechaCreacion;
         this.idVenta = idVenta;
@@ -80,5 +82,9 @@ public class VentaEntity {
         sb.append('}');
         return sb.toString();
     }
+
+    public VentaEntity() {
+    }
+
 
 }
