@@ -4,7 +4,7 @@ import com.gdl.pokecardstore.dto.*;
 import com.gdl.pokecardstore.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

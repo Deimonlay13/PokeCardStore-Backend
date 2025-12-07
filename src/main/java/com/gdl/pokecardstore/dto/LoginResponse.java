@@ -1,13 +1,14 @@
 package com.gdl.pokecardstore.dto;
 
 public class LoginResponse {
-
+    private Long id;
     private String token;
     private String nombre;
     private String apellido;
     private String email;
 
-    public LoginResponse(String token, String nombre, String apellido, String email) {
+    public LoginResponse(String token, Long id, String nombre, String apellido, String email) {
+        this.id = id;
         this.token = token;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -47,6 +48,14 @@ public class LoginResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }
