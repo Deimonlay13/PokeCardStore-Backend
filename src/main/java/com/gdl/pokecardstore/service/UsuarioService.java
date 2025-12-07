@@ -39,6 +39,7 @@ public class UsuarioService {
     }
 
     public LoginResponse login(LoginRequest request) {
+
         UsuarioEntity usuario = usuarioRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
@@ -48,9 +49,12 @@ public class UsuarioService {
 
         String token = jwtService.generateToken(usuario.getEmail());
 
-        return new LoginResponse(token);
+        return new LoginResponse(
+                token,
+                usuario.getNombre(),
+                usuario.getApellido(),
+                usuario.getEmail());
     }
-
 
     public UsuarioEntity findById(Long id) {
         return usuarioRepository.findById(id)
