@@ -51,7 +51,7 @@ public class UsuarioService {
 
         return new LoginResponse(
                 token,
-                usuario.getIdCliente(),
+                usuario.getIdUsuario(),
                 usuario.getNombre(),
                 usuario.getApellido(),
                 usuario.getEmail());

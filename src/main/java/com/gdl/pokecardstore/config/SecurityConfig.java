@@ -32,6 +32,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login", "/auth/register").permitAll()
                         .requestMatchers("/Producto/**").permitAll()
                         .requestMatchers("/usuario/**").permitAll()
+                        .requestMatchers("/venta/**").permitAll()
+                        .requestMatchers("/detalle-venta/**").permitAll()
 
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
