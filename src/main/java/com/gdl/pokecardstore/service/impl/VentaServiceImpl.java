@@ -62,6 +62,14 @@ public class VentaServiceImpl implements VentaService {
 
         return convertToDTO(nuevaVenta);
     }
+    
+    @Override
+    public List<VentaDTO> getVentasByUsuario(Long idUsuario) {
+        return ventaRepository.findByUsuario_IdUsuario(idUsuario)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
 
     // CONVERTIR ENTITY A DTO
     private VentaDTO convertToDTO(VentaEntity v) {

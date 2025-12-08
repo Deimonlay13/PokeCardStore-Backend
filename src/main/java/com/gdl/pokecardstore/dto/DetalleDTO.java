@@ -6,16 +6,37 @@ public class DetalleDTO {
     private Long idCarta;
     private Integer cantidad;
     private Double precio;
+    private String img;
+    private String nombre;
 
     public DetalleDTO() {
     }
 
-    public DetalleDTO(Long idDetalle, Long idVenta, Long idCarta, Integer cantidad, Double precio) {
+    public DetalleDTO(Long idDetalle, Long idVenta, Long idCarta, Integer cantidad, Double precio, String img, String nombre) {
         this.idDetalle = idDetalle;
         this.idVenta = idVenta;
         this.idCarta = idCarta;
+        this.img = img;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.nombre = nombre;
+
+    }
+
+    public String getImagenProducto() {
+        return img;
+    }
+
+    public void setImagenProducto(String img) {
+        this.img = img;
+    }
+
+    public String getNombreProducto() {
+        return nombre;
+    }
+
+    public void setNombreProducto(String nombre) {
+        this.nombre = nombre;
     }
 
     public Long getIdDetalle() {
@@ -68,4 +89,6 @@ public class DetalleDTO {
                 ", precio=" + precio +
                 '}';
     }
+
+
 }
