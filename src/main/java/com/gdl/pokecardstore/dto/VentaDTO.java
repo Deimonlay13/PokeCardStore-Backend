@@ -5,21 +5,21 @@ import java.time.LocalDateTime;
 public class VentaDTO {
 
     private Long idVenta;
-    private Long idCliente;
+    private Long idUsuario;
     private Double total;
     private LocalDateTime fechaCreacion;
 
 
-    public VentaDTO(Long idVenta, Long idCliente, Double total, LocalDateTime fechaCreacion) {
+    public VentaDTO() {
+    }
+
+    public VentaDTO(Long idVenta, Long idUsuario, Double total, LocalDateTime fechaCreacion) {
         this.idVenta = idVenta;
-        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.total = total;
         this.fechaCreacion = fechaCreacion;
     }
 
-    public VentaDTO() {
-    // Constructor vacío necesario para Spring/Jackson
-    }
 
     public Long getIdVenta() {
         return idVenta;
@@ -30,11 +30,11 @@ public class VentaDTO {
     }
 
     public Long getIdUsuario() {
-        return idCliente;
+        return idUsuario;
     }
 
     public void setIdUsuario(Long idUsuario) {
-        this.idCliente = idUsuario;
+        this.idUsuario = idUsuario;
     }
 
     public Double getTotal() {
