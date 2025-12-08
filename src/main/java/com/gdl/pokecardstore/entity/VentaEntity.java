@@ -31,8 +31,6 @@ public class VentaEntity {
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
     private LocalDateTime fechaCreacion;
 
-
-
     public VentaEntity() {
     }
 
@@ -48,12 +46,10 @@ public class VentaEntity {
         this.total = total;
     }
 
-
     @PrePersist
     protected void onCreate() {
         this.fechaCreacion = LocalDateTime.now();
     }
-
 
     public Long getIdVenta() {
         return idVenta;
@@ -87,15 +83,13 @@ public class VentaEntity {
         this.fechaCreacion = fechaCreacion;
     }
 
-
     @Override
     public String toString() {
         return "VentaEntity{" +
                 "idVenta=" + idVenta +
-                ", usuario=" + (usuario != null ? usuario.getIdCliente() : null) +
+                ", usuario=" + (usuario != null ? usuario.getIdUsuario() : null) +
                 ", total=" + total +
                 ", fechaCreacion=" + fechaCreacion +
                 '}';
     }
 }
-

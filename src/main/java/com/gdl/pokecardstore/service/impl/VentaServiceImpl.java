@@ -68,7 +68,7 @@ public class VentaServiceImpl implements VentaService {
 
         return new VentaDTO(
                 v.getIdVenta(),
-                v.getUsuario().getIdCliente(),
+                v.getUsuario().getIdUsuario(),  // 👉 Tu versión (HEAD)
                 v.getTotal(),
                 v.getFechaCreacion()
         );
