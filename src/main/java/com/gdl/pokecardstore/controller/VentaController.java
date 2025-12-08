@@ -1,6 +1,9 @@
 package com.gdl.pokecardstore.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,5 +48,12 @@ public class VentaController {
         ventaService.eliminarVenta(id);
         return "Venta eliminada correctamente";
     }
+        
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<List<VentaDTO>> getVentasByUsuario(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(ventaService.getVentasByUsuario(idUsuario));
+    }
+
+
 }
 
