@@ -54,7 +54,8 @@ public class UsuarioService {
                 usuario.getIdUsuario(),
                 usuario.getNombre(),
                 usuario.getApellido(),
-                usuario.getEmail());
+                usuario.getEmail(),
+                usuario.getRut());
     }
 
     public UsuarioEntity findById(Long id) {

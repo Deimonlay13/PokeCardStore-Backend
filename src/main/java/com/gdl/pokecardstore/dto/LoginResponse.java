@@ -6,13 +6,15 @@ public class LoginResponse {
     private String nombre;
     private String apellido;
     private String email;
+    private String rut;
 
-    public LoginResponse(String token, Long id, String nombre, String apellido, String email) {
+    public LoginResponse(String token, Long id, String nombre, String apellido, String email, String rut) {
         this.id = id;
         this.token = token;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.rut = rut;
     }
 
     public LoginResponse() {
@@ -48,6 +50,14 @@ public class LoginResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
     }
 
     public Long getId() {
