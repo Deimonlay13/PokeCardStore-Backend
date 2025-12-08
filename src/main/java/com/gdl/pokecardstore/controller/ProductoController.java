@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gdl.pokecardstore.dto.ProductoDTO;
 import com.gdl.pokecardstore.service.IProductoService;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping ("/Producto")
 public class ProductoController {
