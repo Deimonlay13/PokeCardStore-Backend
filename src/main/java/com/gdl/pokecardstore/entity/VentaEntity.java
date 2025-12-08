@@ -1,9 +1,7 @@
 package com.gdl.pokecardstore.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,9 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "venta")
@@ -28,20 +25,30 @@ public class VentaEntity {
     @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioEntity usuario;
 
+    @Column(nullable = false)
     private Double total;
 
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
     private LocalDateTime fechaCreacion;
 
+    public VentaEntity() {
+    }
 
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleEntity> detalles;
-
-    public VentaEntity(LocalDateTime fechaCreacion, Long idVenta, Double total, UsuarioEntity usuario) {
-        this.fechaCreacion = fechaCreacion;
+    public VentaEntity(Long idVenta, UsuarioEntity usuario, Double total, LocalDateTime fechaCreacion) {
         this.idVenta = idVenta;
-        this.total = total;
         this.usuario = usuario;
+        this.total = total;
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public VentaEntity(UsuarioEntity usuario, Double total) {
+        this.usuario = usuario;
+        this.total = total;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.fechaCreacion = LocalDateTime.now();
     }
 
     public Long getIdVenta() {
@@ -78,18 +85,11 @@ public class VentaEntity {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Venta{");
-        sb.append("idVenta=").append(idVenta);
-        sb.append(", usuario=").append(usuario);
-        sb.append(", total=").append(total);
-        sb.append(", fechaCreacion=").append(fechaCreacion);
-        sb.append('}');
-        return sb.toString();
+        return "VentaEntity{" +
+                "idVenta=" + idVenta +
+                ", usuario=" + (usuario != null ? usuario.getIdUsuario() : null) +
+                ", total=" + total +
+                ", fechaCreacion=" + fechaCreacion +
+                '}';
     }
-
-    public VentaEntity() {
-    }
-
-
 }

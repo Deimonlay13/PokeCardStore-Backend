@@ -10,5 +10,5 @@ public interface VentaService {
     VentaDTO obtenerVentaPorId(Long idVenta);
     List<VentaDTO> obtenerVentas();
     void eliminarVenta(Long idVenta);
-
 }
+
