@@ -7,21 +7,38 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gdl.pokecardstore.dto.DetalleDTO;
 import com.gdl.pokecardstore.dto.VentaDTO;
 import com.gdl.pokecardstore.entity.UsuarioEntity;
 import com.gdl.pokecardstore.entity.VentaEntity;
 import com.gdl.pokecardstore.repository.UsuarioRepository;
 import com.gdl.pokecardstore.repository.VentaRepository;
+import com.gdl.pokecardstore.service.IDetalleService;
+import com.gdl.pokecardstore.service.IProductoService;
 import com.gdl.pokecardstore.service.VentaService;
+
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VentaServiceImpl implements VentaService {
 
-    @Autowired
-    private VentaRepository ventaRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private  VentaRepository ventaRepository;
+    private  UsuarioRepository usuarioRepository;
+private IProductoService productoService;
+    private  IDetalleService detalleService;
+
+ @Autowired
+public VentaServiceImpl(VentaRepository ventaRepository,
+                        UsuarioRepository usuarioRepository,
+                        IProductoService productoService,
+                        IDetalleService detalleService) {
+    this.ventaRepository = ventaRepository;
+    this.usuarioRepository = usuarioRepository;
+    this.productoService = productoService;
+    this.detalleService = detalleService;
+}
+
 
     // LISTAR TODAS
     @Override
@@ -47,6 +64,7 @@ public class VentaServiceImpl implements VentaService {
     }
 
     // CREAR VENTA
+    @Transactional
     @Override
     public VentaDTO crearVenta(VentaDTO dto) {
 
@@ -59,7 +77,15 @@ public class VentaServiceImpl implements VentaService {
         venta.setFechaCreacion(LocalDateTime.now());
 
         VentaEntity nuevaVenta = ventaRepository.save(venta);
+        if (dto.getDetalles() != null) {
+            for (DetalleDTO detalle : dto.getDetalles()) {
+                productoService.descontarStock(detalle.getIdProducto(), detalle.getCantidad());
 
+                // Asignamos la venta recién creada al detalle
+                detalle.setIdVenta(nuevaVenta.getIdVenta());
+                detalleService.createDetalle(detalle);
+            }
+        }
         return convertToDTO(nuevaVenta);
     }
     
@@ -76,9 +102,9 @@ public class VentaServiceImpl implements VentaService {
 
         return new VentaDTO(
                 v.getIdVenta(),
-                v.getUsuario().getIdUsuario(),  // 👉 Tu versión (HEAD)
+                v.getUsuario().getIdUsuario(),
                 v.getTotal(),
-                v.getFechaCreacion()
+                v.getFechaCreacion(), null
         );
     }
 }
