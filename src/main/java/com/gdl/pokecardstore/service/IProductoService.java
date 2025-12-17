@@ -11,8 +11,7 @@ public interface IProductoService  {
 
   List<ProductoDTO>getAllProductos();
 
-   
 
-    
+  void descontarStock(Long idProducto, int cantidad);
        
 }

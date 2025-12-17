@@ -3,7 +3,7 @@ package com.gdl.pokecardstore.dto;
 public class DetalleDTO {
     private Long idDetalle;
     private Long idVenta;
-    private Long idCarta;
+    private Long idProducto;
     private Integer cantidad;
     private Double precio;
     private String img;
@@ -12,10 +12,10 @@ public class DetalleDTO {
     public DetalleDTO() {
     }
 
-    public DetalleDTO(Long idDetalle, Long idVenta, Long idCarta, Integer cantidad, Double precio, String img, String nombre) {
+    public DetalleDTO(Long idDetalle, Long idVenta, Long idProducto, Integer cantidad, Double precio, String img, String nombre) {
         this.idDetalle = idDetalle;
         this.idVenta = idVenta;
-        this.idCarta = idCarta;
+        this.idProducto = idProducto;
         this.img = img;
         this.cantidad = cantidad;
         this.precio = precio;
@@ -55,12 +55,12 @@ public class DetalleDTO {
         this.idVenta = idVenta;
     }
 
-    public Long getIdCarta() {
-        return idCarta;
+    public Long getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdCarta(Long idCarta) {
-        this.idCarta = idCarta;
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
     }
 
     public Integer getCantidad() {
@@ -84,7 +84,7 @@ public class DetalleDTO {
         return "DetalleVentaDTO{" +
                 "idDetalle=" + idDetalle +
                 ", idVenta=" + idVenta +
-                ", idCarta=" + idCarta +
+                ", idProducto=" + idProducto +
                 ", cantidad=" + cantidad +
                 ", precio=" + precio +
                 '}';

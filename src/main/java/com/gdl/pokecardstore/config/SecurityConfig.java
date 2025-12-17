@@ -36,8 +36,11 @@ public class SecurityConfig {
                         .requestMatchers("/venta/**").permitAll()
                         .requestMatchers("/detalle-venta/**").permitAll()
                         .requestMatchers("/direccion/**").permitAll()
-
                         .requestMatchers("/pago/**").permitAll()
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**")
+                        .permitAll()
 
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

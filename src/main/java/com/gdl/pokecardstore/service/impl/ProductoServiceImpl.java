@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.gdl.pokecardstore.dto.ProductoDTO;
+import com.gdl.pokecardstore.entity.ProductoEntity;
 import com.gdl.pokecardstore.repository.IProductoRepository;
 import com.gdl.pokecardstore.service.IProductoService;
+
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductoServiceImpl implements IProductoService{
@@ -32,6 +35,23 @@ public class ProductoServiceImpl implements IProductoService{
       }).collect(Collectors.toList());
     }
 
-     
+    @Transactional
+    public void descontarStock(Long idProducto, int cantidad) {
+      System.out.println("🟢 Descontando producto " + idProducto + " cantidad " + cantidad);
+
+      ProductoEntity producto = productoRepository.findById(idProducto)
+          .orElseThrow(() -> new RuntimeException("Producto no encontrado: " + idProducto));
+
+      if (producto.getStock() < cantidad) {
+        throw new RuntimeException("Stock insuficiente para: " + producto.getNombre());
+      }
+
+      System.out.println("🟢 Antes: stock = " + producto.getStock());
+      producto.setStock(producto.getStock() - cantidad);
+      System.out.println("🔵 Después: stock = " + producto.getStock());
+
+      // 👇 FALTA ESTO
+      productoRepository.save(producto);
+    }
 
 }
