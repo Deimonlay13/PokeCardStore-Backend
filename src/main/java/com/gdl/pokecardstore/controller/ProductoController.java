@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gdl.pokecardstore.dto.ProductoDTO;
 import com.gdl.pokecardstore.service.IProductoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping ("/Producto")
@@ -22,6 +27,15 @@ public class ProductoController {
 
        
     @GetMapping("/")
+        @Operation(
+        summary = "Obtener todos los productos",
+        description = "Retorna una lista con todos los productos disponibles en la tienda."
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "Lista de productos obtenida correctamente",
+        content = @Content(schema = @Schema(implementation = ProductoDTO.class))
+    )
     public ResponseEntity<List<ProductoDTO>> getAllProductos() {
         return ResponseEntity.ok(productoService.getAllProductos());
     }

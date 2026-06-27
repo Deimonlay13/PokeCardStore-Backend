@@ -1,6 +1,7 @@
 package com.gdl.pokecardstore.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class VentaDTO {
 
@@ -8,16 +9,19 @@ public class VentaDTO {
     private Long idUsuario;
     private Double total;
     private LocalDateTime fechaCreacion;
+    private List<DetalleDTO> detalles;
 
 
     public VentaDTO() {
     }
 
-    public VentaDTO(Long idVenta, Long idUsuario, Double total, LocalDateTime fechaCreacion) {
+    public VentaDTO(Long idVenta, Long idUsuario, Double total, LocalDateTime fechaCreacion, 
+            List<DetalleDTO> detalles) {
         this.idVenta = idVenta;
         this.idUsuario = idUsuario;
         this.total = total;
         this.fechaCreacion = fechaCreacion;
+        this.detalles = detalles;
     }
 
 
@@ -51,5 +55,13 @@ public class VentaDTO {
 
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public List<DetalleDTO> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetalleDTO> detalles) {
+        this.detalles = detalles;
     }
 }

@@ -29,7 +29,7 @@ public class DetalleServiceImpl implements IDetalleService {
 
         DetalleEntity entity = new DetalleEntity();
         entity.setVenta(venta);
-        entity.setIdCarta(detalleDTO.getIdCarta());
+        entity.setIdCarta(detalleDTO.getIdProducto());
         entity.setCantidad(detalleDTO.getCantidad());
         entity.setPrecio(detalleDTO.getPrecio());
 
@@ -49,7 +49,7 @@ public class DetalleServiceImpl implements IDetalleService {
                     DetalleDTO dto = new DetalleDTO();
                     dto.setIdDetalle(entity.getIdDetalle());
                     dto.setIdVenta(entity.getVenta().getIdVenta());
-                    dto.setIdCarta(entity.getIdCarta());
+                    dto.setIdProducto(entity.getIdCarta());
                     dto.setCantidad(entity.getCantidad());
                     dto.setPrecio(entity.getPrecio());
 
@@ -73,7 +73,7 @@ public class DetalleServiceImpl implements IDetalleService {
                     DetalleDTO dto = new DetalleDTO();
                     dto.setIdDetalle(entity.getIdDetalle());
                     dto.setIdVenta(entity.getVenta().getIdVenta());
-                    dto.setIdCarta(entity.getIdCarta());
+                    dto.setIdProducto(entity.getIdCarta());
                     dto.setCantidad(entity.getCantidad());
                     dto.setPrecio(entity.getPrecio());
 
