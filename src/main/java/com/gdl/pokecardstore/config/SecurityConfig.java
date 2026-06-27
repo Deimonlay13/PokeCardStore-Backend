@@ -30,19 +30,20 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/register" "/actuator/health",
-                                "/actuator/prometheus").permitAll()
+                        .requestMatchers(
+                                "/auth/login",
+                                "/auth/register",
+                                "/actuator/health",
+                                "/actuator/prometheus",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**")
+                        .permitAll()
                         .requestMatchers("/Producto/**").permitAll()
                         .requestMatchers("/usuario/**").permitAll()
                         .requestMatchers("/venta/**").permitAll()
                         .requestMatchers("/detalle-venta/**").permitAll()
                         .requestMatchers("/direccion/**").permitAll()
                         .requestMatchers("/pago/**").permitAll()
-                        .requestMatchers(
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**")
-                        .permitAll()
-
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
